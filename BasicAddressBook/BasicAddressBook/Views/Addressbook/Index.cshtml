@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HanyAddressBookGet.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpMobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpHomeTel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpDateofBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpPhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DeptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title.TitleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpHomeTel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpDateofBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpEmail)
+        </td>
+        <td>
+            <img src='@Url.Action("showImg", "Addressbook", new { id = item.EmpID })' width="50" height="50" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DeptName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title.TitleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpID })
+        </td>
+    </tr>
+}
+
+</table>
+<div class="ExportSection">
+
+    <ul>
+        <li>@Html.ActionLink("Export to Excel", "ExportClientsListToExcel")</li>
+        <li>@Html.ActionLink("Manage Titles", "Index", "Titles") </li>
+        <li>@Html.ActionLink("Manage Departments", "index", "Departments")</li>
+    </ul>
+
+</div>
